@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            gap:4px;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body style="background-color: #212121">
+    <button>Check Value</button>
+</body>
+<script>
+    const body=document.querySelector("body")
+    
+    function create(val)
+    {
+        for(let i=1;i<=val;i++)
+        {
+            const inp=document.createElement("input")
+            inp.setAttribute("type","number")
+            inp.setAttribute("inputmode","numeric")
+            inp.style.width="30px"
+            inp.style.height="30px"
+            body.appendChild(inp)
+        }
+    }
+    create(5)
+
+    // const Inputs=document.querySelectorAll("input")
+    // let i=0
+    // let id=""
+    // const start=document.querySelector("button")
+    // start.addEventListener("click",function valueCheck(){
+
+    //     function check(){
+            
+    //         if(parseInt(Inputs[i].value) === parseInt(10))
+    //         {
+    //             if(i!=0)
+    //             {
+    //             Inputs[i-1].style.backgroundColor="white"
+    //             }
+    //             Inputs[i].style.backgroundColor="green"
+    //             clearInterval(id)
+    //         }
+    //         else
+    //         {
+    //             if(i!=0)
+    //             {
+    //             Inputs[i-1].style.backgroundColor="white"
+    //             }
+    //             Inputs[i].style.backgroundColor="red"
+    //             i++
+    //         }
+    //     }
+
+    //     id=setInterval(check,1000)
+    // })
+    let id=""
+    const btn=document.querySelector("button")
+    const inputs=document.querySelectorAll("input")
+    btn.addEventListener("click",()=>{bubbleSort(0,0)})
+
+    function bubbleSort(i,count)
+    {
+        if(i<inputs.length-1-count)
+        {
+        setTimeout(()=>{
+            inputs[i].style.backgroundColor="green"
+            inputs[i+1].style.backgroundColor="yellow"
+        },1000)
+
+        setTimeout(()=>{
+            if(parseInt(inputs[i].value) > parseInt(inputs[i+1].value))
+            {
+                let t=inputs[i].value
+                inputs[i].value=inputs[i+1].value
+                inputs[i+1].value=t
+
+                inputs[i].style.backgroundColor="yellow"
+                inputs[i+1].style.backgroundColor="green"
+            }
+        },1500)
+
+        setTimeout(()=>{
+            inputs[i].style.backgroundColor="white"
+            inputs[i+1].style.backgroundColor="white"
+
+            i++
+            bubbleSort(i,count)
+        },2000)
+        }
+        else
+        {
+            count++
+            if(count<inputs.length-1)
+            bubbleSort(0,count)
+        }
+    }
+
+    
+
+   
+</script>
+</html>
